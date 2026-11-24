@@ -8,20 +8,22 @@ Everything below is ready to paste. Copy is in English (the film's language); Uz
 
 | File | Text | Pair with title | Notes |
 |---|---|---|---|
-| `SCROLL_thumb-a-drawing.jpg` | SHE DREW THIS… | **A** | **Main pick.** Strongest curiosity gap; the drawing still reads at 168 px. |
-| `SCROLL_thumb-b-5min.jpg` | 5 MORE MINUTES… | B | The film's hook line; Mia is small at feed size. |
-| `SCROLL_thumb-c-lookup.jpg` | LOOK UP. | C | Before/after colour story (cold vs warm). |
-| `SCROLL_cover-vertical.jpg` | SHE DREW THIS… | — | 1080×1920 cover for TikTok / Reels / vertical upload. Text sits inside the 3:4 grid crop and above the bottom UI zone. |
+| `SCROLL_thumb-c-lookup.jpg` | LOOK UP. | **C** | **Main (your choice).** Before/after colour story: cold scrolling vs warm story time. |
+| `SCROLL_thumb-a-drawing.jpg` | SHE DREW THIS… | A | Test variant: strongest curiosity gap; the drawing reads at 168 px. |
+| `SCROLL_thumb-b-5min.jpg` | 5 MORE MINUTES… | B | Test variant: the film's hook line. |
+| `SCROLL_cover-vertical-lookup.jpg` | LOOK UP. | — | **Main vertical cover** (TikTok / Reels / vertical upload), matches C. |
+| `SCROLL_cover-vertical.jpg` | SHE DREW THIS… | — | Alternative vertical cover. |
 
-All 1280×720 JPG, well under YouTube's 2 MB limit. Upload A as the thumbnail, then add B and C in **Test & compare** so YouTube picks the winner by watch time.
+Landscape files are 1280×720 JPG, well under YouTube's 2 MB limit. Vertical covers keep their text inside the 3:4 grid crop and above the bottom UI zone. Upload C as the thumbnail, then add A and B in **Test & compare** so YouTube picks the winner by watch time.
 
 ---
 
 ## 2. Titles (pick one; keep the thumbnail text and the title different)
 
-- **A (recommended):** `SCROLL | The Short Film Every Parent Needs to See` (49 characters)
+- **Main, pairs with thumbnail C:** `They Grow Up While We Scroll | SCROLL – Animated Short Film` (59 characters). The thumbnail says "LOOK UP." and the title says why, without repeating it.
+- C as first written: `Look Up. They’re Growing. | SCROLL – Animated Short Film` (56), repeats the thumbnail text.
+- A: `SCROLL | The Short Film Every Parent Needs to See` (49)
 - B: `“Five More Minutes” | An Animated Short About Phones and Parenting` (66)
-- C: `Look Up. They’re Growing. | SCROLL – Animated Short Film` (56)
 
 ---
 
@@ -48,11 +50,12 @@ Tonight at 8 PM, put your phone in a box and read one story. Come back and tell 
 “It is not that we have a short time to live, but that we waste a lot of it.” — Seneca
 “How we spend our days is, of course, how we spend our lives.” — Annie Dillard
 
-🎬 More from the series
+🎬 More from Little Choices
 1 MINUTE — a short film about habits: [link]
 TEMPER — a short film about anger: [link]
 
-Story, animation, sound and edit: [channel name]
+Little Choices — short films about the small choices that shape a life.
+Story, animation, sound and edit: Little Choices
 Music: [track — composer / licence]
 
 #ShortFilm #ScreenTime #Parenting
@@ -100,7 +103,7 @@ Upload `SCROLL.en.srt` as **English** subtitles. The lines are burned into the p
 
 ## 8. Vertical cut (`SCROLL_vertical.mp4`, 4:54)
 
-- **TikTok:** post the full vertical film with the vertical cover.
+- **TikTok:** post the full vertical film with `SCROLL_cover-vertical-lookup.jpg` as the cover.
   Caption: `She drew her family. Look at Dad. 📱 #shortfilm #screentime #parenting #dadsoftiktok #animation #putyourphonedown`
 - **YouTube Shorts are capped at 3 minutes**, so the 4:54 vertical file uploads as a normal vertical video, not a Short.
 - **Instagram:** a 4:54 video still posts as a Reel, but only Reels up to 3 minutes are recommended to people who don't follow you.
@@ -112,9 +115,9 @@ Upload `SCROLL.en.srt` as **English** subtitles. The lines are burned into the p
 ## 9. Translations (YouTube → Subtitles → Title & description)
 
 **O‘zbekcha**
-- Sarlavha: `SCROLL | Har bir ota-ona ko‘rishi kerak bo‘lgan qisqa film`
+- Sarlavha: `Biz varaqlaymiz, ular ulg‘ayadi | SCROLL – animatsion qisqa film`
 - Tavsif boshi: `Ota telefonni varaqlar ekan, qiziga “yana besh daqiqa” deydi — qizi chizgan oila rasmini ko‘rmaguncha. Ekran vaqti, e’tibor va bolalarimizga bera oladigan eng qimmat sovg‘a — vaqtimiz haqida animatsion qisqa film.`
 
 **Русский**
-- Название: `SCROLL | Короткометражка, которую должен увидеть каждый родитель`
+- Название: `Пока мы листаем, они растут | SCROLL – анимационный короткометражный фильм`
 - Начало описания: `Папа снова и снова говорит дочке «ещё пять минут», листая телефон, — пока не находит её рисунок семьи. Анимационный короткометражный фильм об экранном времени, внимании и самом ценном подарке детям — нашем времени.`

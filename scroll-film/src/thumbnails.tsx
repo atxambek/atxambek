@@ -227,3 +227,52 @@ export const CoverVertical: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+/* ------------------------------------------------------------------ vertical cover, "LOOK UP." (before / after) */
+export const CoverVerticalLookUp: React.FC = () => (
+  <AbsoluteFill style={{background: '#262b34', overflow: 'hidden'}}>
+    {/* before (top): cold, he scrolls, she waits */}
+    <AbsoluteFill style={{clipPath: 'polygon(0 0, 100% 0, 100% 54%, 0 60%)'}}>
+      <svg width={1080} height={1920} viewBox="0 0 1080 1920">
+        <g transform="translate(-230 120)">
+          <LivingRoomBack clockMinutes={22 * 60 + 33} />
+          <Rug cx={1150} />
+          <Sofa />
+          <LightPool id="cvlPhone" x={880} y={520} rx={330} ry={260} color={COLD.screen} opacity={0.45} />
+          <StickFigure x={800} y={680} scale={3.8} pose={POSES.sitPhone} eyes="half" brows={-4} look={[6, 3]} glow="cyan" itemF={<HandPhone angle={-40} />} />
+          <StickFigure x={1150} y={846} scale={4.4} facing={-1} kid pose={{...POSES.stand, armF: [35, 50], headTilt: 20}} eyes="sad" brows={14} look={[5, 3]} glow="rim"
+            itemF={<HandBook angle={0} size={1.45} />} />
+        </g>
+      </svg>
+    </AbsoluteFill>
+    {/* after (bottom): warm, story time */}
+    <AbsoluteFill style={{clipPath: 'polygon(0 60%, 100% 54%, 100% 100%, 0 100%)'}}>
+      <svg width={1080} height={1920} viewBox="0 0 1080 1920">
+        <g transform="translate(-391 675) scale(1.25)">
+          <BedroomBack season="spring" />
+          <LightPool id="cvlLamp" x={454} y={500} rx={760} ry={560} color={WARM.lamp} opacity={0.5} />
+          <Bed />
+          <StickFigure x={700} y={700} scale={4.2} pose={POSES.sitRead} eyes="happy" brows={4} look={[6, 2]} glow="amber" glowStrength={0.9} itemF={<OpenBook angle={-25} size={1.6} />} />
+          <StickFigure x={790} y={700} scale={4.2} kid pose={{armF: [165, 10], armB: [155, 15], legF: [90, 0], legB: [88, 0], lean: 4, headTilt: -8}} eyes="happy" brows={4} look={[5, 1]} glow="amber" glowStrength={0.9} />
+          <Blanket />
+        </g>
+      </svg>
+    </AbsoluteFill>
+    {/* the seam */}
+    <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{position: 'absolute', left: 0, top: 0}}>
+      <defs>
+        <linearGradient id="cvlSeam" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor={COLD.screen} />
+          <stop offset="1" stopColor={WARM.lamp} />
+        </linearGradient>
+        <filter id="cvlGlow" x="-10%" y="-200%" width="120%" height="500%">
+          <feGaussianBlur stdDeviation={10} />
+        </filter>
+      </defs>
+      <line x1={0} y1={1152} x2={1080} y2={1037} stroke="url(#cvlSeam)" strokeWidth={26} filter="url(#cvlGlow)" opacity={0.8} />
+      <line x1={0} y1={1152} x2={1080} y2={1037} stroke="#ffffff" strokeWidth={6} opacity={0.9} />
+    </svg>
+    <Vignette strength={0.4} />
+    <Punch lines={['Look up.']} x={0} y={285} size={175} align="center" rotate={0} width={1080} />
+  </AbsoluteFill>
+);
