@@ -1,0 +1,23 @@
+{
+  "name": "scroll-film",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "studio": "remotion studio",
+    "stills": "bash scripts/stills.sh",
+    "animatic": "remotion render Film out/animatic.mp4 --scale=0.5 --fps=10",
+    "render": "remotion render Film out/scroll.mp4 --crf=18 --audio-bitrate=192k"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.546",
+    "@remotion/fonts": "^4.0.546",
+    "@remotion/renderer": "^4.0.546",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.546"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "typescript": "^5.6.3"
+  }
+}
