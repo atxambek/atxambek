@@ -3,3 +3,6 @@ out/*.mp4
 out/frames
 public/audio/*.wav
 out/*.wav
+out/*.log
+out/*.txt
+out/chk*
