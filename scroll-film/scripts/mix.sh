@@ -28,5 +28,11 @@ ffmpeg -loglevel error -y -i out/premix.wav -af \
 # 4) mux: H.264 video as rendered (CRF 18) + AAC 192 kbps
 ffmpeg -loglevel error -y -i "$VIDEO" -i out/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/SCROLL_final.mp4
 
+# 4b) the vertical cut (same timeline, same mix) if it has been rendered
+if [ -f out/scroll_vertical_video.mp4 ]; then
+  ffmpeg -loglevel error -y -i out/scroll_vertical_video.mp4 -i out/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/SCROLL_vertical.mp4
+  echo "vertical: out/SCROLL_vertical.mp4"
+fi
+
 # 5) report
 python3 scripts/loudness_report.py out/mix.wav | tee out/loudness_report.txt

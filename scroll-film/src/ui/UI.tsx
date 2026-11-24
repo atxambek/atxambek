@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, interpolate} from 'remotion';
 import {useF} from '../time';
+import {useFrameWindow} from './frameCtx';
 import {HAND} from '../fonts';
 import {COLD, EXCUSE, H, W} from '../theme';
 
@@ -45,10 +46,21 @@ export type SubKind = 'spoken' | 'excuse' | 'thought';
  * Fades in over 6 frames, out over 8. `from`/`to` are frames relative to the enclosing Sequence.
  */
 export const Subtitle: React.FC<{text: string; kind?: SubKind; x: number; y: number; from?: number; to?: number; size?: number}> = ({
-  text, kind = 'spoken', x, y, from = 0, to = 99999, size = 46,
+  text, kind = 'spoken', x: x0, y: y0, from = 0, to = 99999, size = 46,
 }) => {
+  let x = x0;
+  let y = y0;
   const f = useF();
+  const win = useFrameWindow();
   if (f < from || f > to) return null;
+  if (win) {
+    // vertical cut: keep the line inside the visible window and out of the right-hand safe zone
+    const w = text.length * size * 0.5 + 70;
+    const lo = win.x0 + 30 / win.s + w / 2;
+    const hi = win.x1 - win.safeRight - w / 2;
+    x = lo > hi ? (win.x0 + win.x1 - win.safeRight) / 2 : Math.min(hi, Math.max(lo, x));
+    if (win.subY !== undefined) y = win.subY;
+  }
   const op = Math.min(interpolate(f, [from, from + 6], [0, 1], {extrapolateRight: 'clamp'}), interpolate(f, [to - 8, to], [1, 0], {extrapolateLeft: 'clamp'}));
   const thought = kind === 'thought';
   const color = kind === 'excuse' ? EXCUSE : thought ? '#d4d9e2' : '#ffffff';
@@ -88,6 +100,14 @@ export const ScreenTimeMeter: React.FC<{x: number; y: number; minutes: number; o
   x, y, minutes, opacity = 1, dim = 0, scale = 1, compact = false,
 }) => {
   // NB: keep scale >= 1 so the label never drops under 32 px; use `compact` for a shorter pill.
+  const win = useFrameWindow();
+  if (win) {
+    // vertical cut: small meter in the top-right of the visible window; label stays >= 32 px on output
+    scale = Math.max(0.6, 1 / win.s);
+    compact = true;
+    x = win.x1 - win.safeRight - 130 * scale;
+    y = 40;
+  }
   const pillW = 62;
   const pillH = compact ? 160 : 240;
   const fill = Math.min(1, minutes / 300);
