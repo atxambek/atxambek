@@ -145,9 +145,8 @@ export const S04Full: React.FC<{dur: number}> = ({dur}) => {
         <Layer style={{opacity: cross(p2)}}>
           <BookOnRug x={1330} y={890} s={1.1} />
           <g transform={`translate(0 ${walkBob(ph) * 2})`}>
-            <StickFigure x={carryX} y={760} scale={3.8} facing={-1} pose={{...walkPose(ph), armF: [75, 20], armB: [70, 25]}} eyes="sad" brows={8} look={[6, 3]} glow="rim" />
-            <StickFigure x={carryX - 40} y={640} rotate={90} scale={4.0} facing={-1} kid pose={POSES.lie} eyes="closed" look={[0, -7]} glow="none" />
-            <path d={`M${carryX - 130},630 q90,-40 170,0 q10,40 -20,50 l-130,0 q-30,-10 -20,-50z`} fill="#6f7d94" />
+            <StickFigure x={carryX} y={760} scale={3.8} facing={-1} pose={{...walkPose(ph), armF: [78, 18], armB: [72, 22], headTilt: 14}} eyes="sad" brows={8} look={[6, 3]} glow="rim" />
+            <SleepingBundle x={carryX - 70} y={655} />
           </g>
         </Layer>
       </Camera>
@@ -157,6 +156,23 @@ export const S04Full: React.FC<{dur: number}> = ({dur}) => {
     </AbsoluteFill>
   );
 };
+
+/** Mia asleep, wrapped in the blanket and held across Dad's arms (facing left). World px. */
+export const SleepingBundle: React.FC<{x: number; y: number}> = ({x, y}) => (
+  <g transform={`translate(${x} ${y})`}>
+    <rect x={-40} y={-26} width={170} height={56} rx={28} fill="#6f7d94" />
+    <path d="M-10,-20 q40,10 80,-2 q30,-8 50,6" stroke="#8592a8" strokeWidth={5} fill="none" />
+    <g transform="translate(-58 -14)">
+      <ellipse cx={-18} cy={-22} rx={13} ry={9} fill="#0a0c10" transform="rotate(-30 -18 -22)" />
+      <ellipse cx={22} cy={-26} rx={12} ry={8} fill="#0a0c10" transform="rotate(30 22 -26)" />
+      <circle r={30} fill="#0a0c10" />
+      <g transform="translate(12 -27) rotate(20)">
+        <rect x={-9} y={-4} width={18} height={8} rx={4} fill="#ffd23f" />
+      </g>
+      <path d="M-16,2 q5,5 10,0 M2,2 q5,5 10,0" stroke="#fff" strokeWidth={2.6} fill="none" strokeLinecap="round" />
+    </g>
+  </g>
+);
 
 /* ---------------------------------------------------------------- bookmark inserts */
 

@@ -110,8 +110,8 @@ export const S10Report: React.FC<{dur: number}> = ({dur}) => {
           <Hand x={900} y={1080} s={1.9} rotate={-6} curl={0.6} />
         </Layer>
       </Camera>
-      <Subtitle text="Four hours. Every day." kind="thought" x={1420} y={470} from={100} to={dur - 30} />
-      <ScreenTimeMeter x={1610} y={560} minutes={252} scale={0.8} opacity={ramp(f, 60, 80)} />
+      <Subtitle text="Four hours. Every day." kind="thought" x={1380} y={400} from={100} to={dur - 30} />
+      <ScreenTimeMeter x={1680} y={470} minutes={252} compact opacity={ramp(f, 60, 80)} />
       <Vignette />
     </AbsoluteFill>
   );

@@ -1,0 +1,30 @@
+[aist#0:0/pcm_s16le @ 0x560ce1e6f140] Guessed Channel Layout: stereo
+Input #0, wav, from 'out/premix.wav':
+  Metadata:
+    encoder         : Lavf60.16.100
+  Duration: 00:04:54.00, bitrate: 1536 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 48000 Hz, 2 channels, s16, 1536 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf60.16.100
+  Stream #0:0: Audio: pcm_s16le, 192000 Hz, stereo, s16, 6144 kb/s
+    Metadata:
+      encoder         : Lavc60.31.102 pcm_s16le
+size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    size=N/A time=00:00:19.50 bitrate=N/A speed=37.3x    size=N/A time=00:00:34.40 bitrate=N/A speed=33.6x    size=N/A time=00:00:48.70 bitrate=N/A speed=31.9x    size=N/A time=00:01:05.70 bitrate=N/A speed=32.4x    size=N/A time=00:01:23.80 bitrate=N/A speed=33.2x    size=N/A time=00:01:46.10 bitrate=N/A speed=  35x    size=N/A time=00:02:10.60 bitrate=N/A speed=  37x    size=N/A time=00:02:28.90 bitrate=N/A speed=36.9x    size=N/A time=00:02:52.70 bitrate=N/A speed=38.1x    size=N/A time=00:03:13.70 bitrate=N/A speed=38.5x    size=N/A time=00:03:36.30 bitrate=N/A speed=39.1x    size=N/A time=00:04:01.80 bitrate=N/A speed=40.1x    size=N/A time=00:04:24.00 bitrate=N/A speed=40.4x    size=N/A time=00:04:45.90 bitrate=N/A speed=40.6x    [out#0/null @ 0x560ce1e48680] video:0kB audio:220500kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+size=N/A time=00:04:51.10 bitrate=N/A speed=40.5x    
+[Parsed_loudnorm_0 @ 0x560ce1e79580] 
+{
+	"input_i" : "-19.94",
+	"input_tp" : "-5.81",
+	"input_lra" : "5.20",
+	"input_thresh" : "-30.03",
+	"output_i" : "-13.76",
+	"output_tp" : "-1.50",
+	"output_lra" : "4.90",
+	"output_thresh" : "-23.81",
+	"normalization_type" : "dynamic",
+	"target_offset" : "-0.24"
+}

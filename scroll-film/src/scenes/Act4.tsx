@@ -192,7 +192,7 @@ export const S16Setback: React.FC<{dur: number}> = ({dur}) => {
       <AbsoluteFill style={{background: 'linear-gradient(to left, rgba(255,179,92,0.35), rgba(255,179,92,0) 30%)'}} />
       <Subtitle text="Could be important." kind="excuse" x={1290} y={380} from={60} to={140} />
       <Subtitle text="Just check." kind="excuse" x={1290} y={380} from={150} to={215} />
-      <Subtitle text="Daddy! Page 12!" kind="spoken" x={1600} y={520} from={220} to={290} />
+      <Subtitle text="Daddy! Page 12!" kind="spoken" x={1690} y={470} from={220} to={290} />
       <Subtitle text="It can wait." kind="spoken" x={700} y={250} from={pullBack + 20} to={pullBack + 100} />
       <Vignette />
     </AbsoluteFill>
@@ -222,7 +222,7 @@ export const S17Montage: React.FC<{dur: number}> = ({dur}) => {
           <React.Fragment key={i}>
             <AbsoluteFill style={{opacity: i === 0 ? 1 - ramp(f, mid - X, mid + X) : op(s0, mid)}}>
               <BedroomReading dur={dur} season={b.season} dadEyes={i === 2 ? 'happy' : 'open'} miaEyes={i > 0 ? 'happy' : 'open'}>
-                <ScreenTimeMeter x={1390} y={60} minutes={b.minutes} scale={0.85} dim={0.2} />
+                <ScreenTimeMeter x={1390} y={40} minutes={b.minutes} compact dim={0.2} />
               </BedroomReading>
             </AbsoluteFill>
             <AbsoluteFill style={{opacity: i === 2 ? ramp(f, mid - X, mid + X) : op(mid, e)}}>

@@ -6,7 +6,8 @@
     "studio": "remotion studio",
     "stills": "bash scripts/stills.sh",
     "animatic": "remotion render Film out/animatic.mp4 --scale=0.5 --props='{\"fps\":10}' --concurrency=4",
-    "render": "remotion render Film out/scroll.mp4 --crf=18 --audio-bitrate=192k"
+    "render": "remotion render Film out/scroll_video.mp4 --codec=h264 --crf=18 --concurrency=4 --muted",
+    "mix": "bash scripts/mix.sh"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.546",

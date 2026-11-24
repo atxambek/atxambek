@@ -84,11 +84,12 @@ export const Subtitle: React.FC<{text: string; kind?: SubKind; x: number; y: num
 const fmt = (m: number) => `${Math.floor(m / 60)}h ${String(Math.round(m % 60)).padStart(2, '0')}m`;
 
 /** SCREEN TIME widget: vertical pill, fill rises with minutes (full = 5h). */
-export const ScreenTimeMeter: React.FC<{x: number; y: number; minutes: number; opacity?: number; dim?: number; scale?: number}> = ({
-  x, y, minutes, opacity = 1, dim = 0, scale = 1,
+export const ScreenTimeMeter: React.FC<{x: number; y: number; minutes: number; opacity?: number; dim?: number; scale?: number; compact?: boolean}> = ({
+  x, y, minutes, opacity = 1, dim = 0, scale = 1, compact = false,
 }) => {
+  // NB: keep scale >= 1 so the label never drops under 32 px; use `compact` for a shorter pill.
   const pillW = 62;
-  const pillH = 240;
+  const pillH = compact ? 160 : 240;
   const fill = Math.min(1, minutes / 300);
   const hot = interpolate(minutes, [90, 250], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) * (1 - dim);
   const fillColor = dim > 0.5 ? '#7b8494' : COLD.screen;
