@@ -1,5 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {useF} from '../time';
+import {AbsoluteFill, interpolate} from 'remotion';
 import {POSES, StickFigure} from '../characters/StickFigure';
 import {HandPhone} from '../props/Props';
 import {LivingRoomBack, Rug, Sofa} from '../sets/LivingRoom';
@@ -20,7 +21,7 @@ export const BookTent: React.FC<{x: number; y: number; s?: number}> = ({x, y, s 
 
 /** S4 wide: Mia asleep on the rug, book on her chest; Dad finally looks up. */
 export const S04Asleep: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useF();
   const zoom = usePush(S4_DUR, 1.02, 1.06);
   const looked = f > 45;
   const dadX = 800;

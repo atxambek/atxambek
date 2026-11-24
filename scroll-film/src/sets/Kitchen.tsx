@@ -49,9 +49,9 @@ export const KitchenBack: React.FC<{mood: Mood; season?: 'winter' | 'spring'}> =
 };
 
 /** Fridge with the drawing on the door. (x,y) = top-left of the fridge, w wide. */
-export const Fridge: React.FC<{x: number; y: number; w: number; mood: Mood; drawing: 'phone' | 'face'; drawingScale?: number}> = ({x, y, w, mood, drawing, drawingScale = 1}) => {
+export const Fridge: React.FC<{x: number; y: number; w: number; h?: number; mood: Mood; drawing: 'phone' | 'face'; drawingScale?: number; drawY?: number}> = ({x, y, w, h = 1400, mood, drawing, drawingScale = 1, drawY = 300}) => {
   const p = pal(mood);
-  const h = 1400;
+  const k = w / 700;
   const ds = drawingScale;
   return (
     <g transform={`translate(${x} ${y})`}>
@@ -63,13 +63,13 @@ export const Fridge: React.FC<{x: number; y: number; w: number; mood: Mood; draw
       </defs>
       <rect x={-8} y={-8} width={w + 16} height={h} rx={30} fill={p.fridgeEdge} />
       <rect width={w} height={h} rx={26} fill={`url(#fr${mood})`} />
-      <line x1={0} y1={250} x2={w} y2={250} stroke={p.fridgeEdge} strokeWidth={6} />
-      <rect x={w - 60} y={120} width={20} height={100} rx={10} fill={p.fridgeEdge} />
-      <rect x={w - 60} y={300} width={20} height={240} rx={10} fill={p.fridgeEdge} />
+      <line x1={0} y1={250 * k} x2={w} y2={250 * k} stroke={p.fridgeEdge} strokeWidth={6} />
+      <rect x={w - 60 * k} y={120 * k} width={20 * k} height={100 * k} rx={10 * k} fill={p.fridgeEdge} />
+      <rect x={w - 60 * k} y={300 * k} width={20 * k} height={240 * k} rx={10 * k} fill={p.fridgeEdge} />
       {/* fridge magnets */}
-      <circle cx={90} cy={330} r={16} fill="#47a55a" />
-      <rect x={w - 180} y={760} width={40} height={30} rx={6} fill="#3c8dd6" />
-      <g transform={`translate(${w / 2 - 240 * ds} ${300}) rotate(-2) scale(${ds})`}>
+      <circle cx={90 * k} cy={330 * k} r={16 * k} fill="#47a55a" />
+      <rect x={w - 180 * k} y={760 * k} width={40 * k} height={30 * k} rx={6 * k} fill="#3c8dd6" />
+      <g transform={`translate(${w / 2 - 240 * ds} ${drawY}) rotate(-2) scale(${ds})`}>
         <FamilyDrawing version={drawing} id={`${mood}${drawing}`} />
       </g>
     </g>

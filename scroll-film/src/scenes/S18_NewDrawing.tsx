@@ -1,16 +1,17 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
+import {useF} from '../time';
+import {AbsoluteFill} from 'remotion';
 import {POSES, StickFigure} from '../characters/StickFigure';
 import {Mug} from '../props/Props';
 import {Fridge, KitchenBack} from '../sets/Kitchen';
 import {WARM} from '../theme';
 import {Camera, Layer, LightPool, usePush, Vignette} from '../ui/UI';
 
-export const S18_DUR = 6 * 30;
+export const S18_DUR = 7 * 30;
 
 /** S18 warm: the new "MY FAMILY" drawing — Dad has a real face. Dad's eyes become happy arcs. */
 export const S18NewDrawing: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useF();
   const zoom = usePush(S18_DUR, 1.0, 1.05);
   const happy = f > 45;
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {useF} from '../time';
+import {AbsoluteFill, interpolate} from 'remotion';
 import {StickFigure, POSES} from '../characters/StickFigure';
 import {HandBook, HandPhone} from '../props/Props';
 import {LivingRoomBack, Rug, Sofa} from '../sets/LivingRoom';
@@ -10,7 +11,7 @@ export const S1_DUR = 9 * 30;
 
 /** S1 wide: Dad on the sofa lit by his phone, Mia runs in with The Moon Rabbit. */
 export const S01Promise: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useF();
   const zoom = usePush(S1_DUR, 1.0, 1.04);
   // Mia runs in from the right, stops at x=1330
   const miaX = interpolate(f, [0, 45], [2100, 1330], {extrapolateRight: 'clamp', easing: (t) => 1 - Math.pow(1 - t, 3)});

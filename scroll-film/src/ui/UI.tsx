@@ -1,5 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate} from 'remotion';
+import {useF} from '../time';
 import {HAND} from '../fonts';
 import {COLD, EXCUSE, H, W} from '../theme';
 
@@ -24,7 +25,7 @@ export const Camera: React.FC<{zoom: number; ox?: number; oy?: number; dx?: numb
 
 /** Slow push-in helper: returns zoom for the current frame. */
 export const usePush = (dur: number, from = 1, to = 1.05) => {
-  const f = useCurrentFrame();
+  const f = useF();
   return interpolate(f, [0, dur], [from, to], {extrapolateRight: 'clamp'});
 };
 
@@ -46,7 +47,7 @@ export type SubKind = 'spoken' | 'excuse' | 'thought';
 export const Subtitle: React.FC<{text: string; kind?: SubKind; x: number; y: number; from?: number; to?: number; size?: number}> = ({
   text, kind = 'spoken', x, y, from = 0, to = 99999, size = 46,
 }) => {
-  const f = useCurrentFrame();
+  const f = useF();
   if (f < from || f > to) return null;
   const op = Math.min(interpolate(f, [from, from + 6], [0, 1], {extrapolateRight: 'clamp'}), interpolate(f, [to - 8, to], [1, 0], {extrapolateLeft: 'clamp'}));
   const thought = kind === 'thought';

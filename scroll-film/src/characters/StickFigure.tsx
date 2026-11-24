@@ -179,3 +179,18 @@ export const StickFigure: React.FC<StickFigureProps> = ({
     </g>
   );
 };
+
+/** Walk cycle. phase in radians (advance ~0.35 per base frame for a normal walk). */
+export const walkPose = (phase: number, over: Partial<Pose> = {}): Pose => {
+  const s = Math.sin(phase);
+  return {
+    armF: [-22 * s, 18],
+    armB: [22 * s, 18],
+    legF: [26 * s, s > 0 ? -6 : -26 * -s],
+    legB: [-26 * s, s < 0 ? -6 : -26 * s],
+    lean: 3,
+    ...over,
+  };
+};
+/** Small vertical bob that goes with walkPose (local px after scale handled by caller). */
+export const walkBob = (phase: number) => -Math.abs(Math.cos(phase)) * 6;

@@ -5,7 +5,7 @@
   "scripts": {
     "studio": "remotion studio",
     "stills": "bash scripts/stills.sh",
-    "animatic": "remotion render Film out/animatic.mp4 --scale=0.5 --fps=10",
+    "animatic": "remotion render Film out/animatic.mp4 --scale=0.5 --props='{\"fps\":10}' --concurrency=4",
     "render": "remotion render Film out/scroll.mp4 --crf=18 --audio-bitrate=192k"
   },
   "dependencies": {

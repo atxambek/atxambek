@@ -1,16 +1,17 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
+import {useF} from '../time';
+import {AbsoluteFill} from 'remotion';
 import {POSES, StickFigure} from '../characters/StickFigure';
 import {HandPhone, Mug} from '../props/Props';
 import {Fridge, KitchenBack} from '../sets/Kitchen';
 import {COLD} from '../theme';
 import {Camera, Layer, LightPool, usePush, Vignette} from '../ui/UI';
 
-export const S7_DUR = 5 * 30;
+export const S7_DUR = 8 * 30;
 
 /** S7 push-in: the "MY FAMILY" drawing on the fridge — Dad's head is a phone. */
 export const S07Drawing: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useF();
   const zoom = usePush(S7_DUR, 1.0, 1.12);
   return (
     <AbsoluteFill style={{background: '#2b313b'}}>
