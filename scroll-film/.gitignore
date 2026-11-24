@@ -6,3 +6,4 @@ out/*.wav
 out/*.log
 out/*.txt
 out/chk*
+out/vqa
