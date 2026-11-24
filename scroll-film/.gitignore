@@ -8,3 +8,4 @@ out/*.txt
 out/chk*
 out/vqa
 out/vqa_final
+out/thumbqa

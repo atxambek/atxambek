@@ -9,7 +9,8 @@
     "render": "remotion render Film out/scroll_video.mp4 --codec=h264 --crf=18 --concurrency=4 --muted",
     "mix": "bash scripts/mix.sh",
     "render:vertical": "remotion render FilmVertical out/scroll_vertical_video.mp4 --codec=h264 --crf=18 --concurrency=4 --muted",
-    "animatic:vertical": "remotion render FilmVertical out/animatic_vertical.mp4 --scale=0.5 --props='{\"fps\":10}' --concurrency=4 --muted"
+    "animatic:vertical": "remotion render FilmVertical out/animatic_vertical.mp4 --scale=0.5 --props='{\"fps\":10}' --concurrency=4 --muted",
+    "thumbnails": "bash scripts/thumbnails.sh"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.546",

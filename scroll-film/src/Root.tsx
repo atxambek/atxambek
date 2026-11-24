@@ -3,6 +3,7 @@ import {Composition} from 'remotion';
 import './fonts';
 import {Film} from './Film';
 import {VerticalFilm} from './vertical';
+import {CoverVertical, ThumbDrawing, ThumbFiveMinutes, ThumbLookUp} from './thumbnails';
 import {FPS, H, W} from './theme';
 import {shotFrames, TIMELINE} from './timeline';
 import {toFrames} from './time';
@@ -41,6 +42,11 @@ export const RemotionRoot: React.FC = () => (
         return {fps, durationInFrames: total(fps)};
       }}
     />
+    {/* Thumbnails (1280x720) and the vertical cover (1080x1920) */}
+    <Composition id="thumb-a-drawing" component={ThumbDrawing} fps={FPS} width={1280} height={720} durationInFrames={1} />
+    <Composition id="thumb-b-5min" component={ThumbFiveMinutes} fps={FPS} width={1280} height={720} durationInFrames={1} />
+    <Composition id="thumb-c-lookup" component={ThumbLookUp} fps={FPS} width={1280} height={720} durationInFrames={1} />
+    <Composition id="cover-vertical" component={CoverVertical} fps={FPS} width={1080} height={1920} durationInFrames={1} />
     {/* Each shot on its own, for scrubbing and style frames */}
     {TIMELINE.map((s) => (
       <Composition key={s.id} id={`shot-${s.id}`} component={() => <>{s.render(shotFrames(s))}</>} fps={FPS} width={W} height={H} durationInFrames={shotFrames(s)} />
