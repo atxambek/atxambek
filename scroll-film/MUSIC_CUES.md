@@ -12,4 +12,4 @@ Drop tracks in `public/audio/` (`music.mp3`, or `act1.mp3` … per section). Tim
 | Act 5 — Payoff | 3:52–4:35 | 43 s | Full warm theme; peak at "Story time." (~4:08) |
 | Ending card + title | 4:35–4:54 | 19 s | Gentle resolve, fade out with the title |
 
-Optional SFX hits: phone taps (0:13–0:19), clock tick (0:26), page turn (0:43, 3:13), marker squeak (2:38–2:41), alarm (2:46–2:49), box lid (2:55), knock (3:00), vibration buzz (3:13–3:23).
+Sound effects and ambiences are listed in `SFX_CUES.md` (generated with the audio). A real track dropped at `public/audio/music.mp3` is automatically matched to the placeholder's loudness, so the music/SFX balance stays as designed.
