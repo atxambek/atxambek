@@ -16,3 +16,4 @@ public/audio/later_*.wav
 out/later/*.wav
 out/later/*.txt
 out/later/*.log
+__pycache__/
