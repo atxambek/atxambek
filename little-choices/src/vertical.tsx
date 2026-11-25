@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill, interpolate, Series, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Shot, shotFrames, TIMELINE} from './timeline';
 import {BASE_FPS, toFrames} from './time';
-import {FrameCtx, PortraitCardCtx} from './ui/frameCtx';
+import {FrameCtx, PortraitCardCtx, MeterPlace} from './ui/frameCtx';
 
 /**
  * 1080x1920 cut. Each 16:9 shot is re-framed: a scale `s` (1.778 = fills the height) and a
@@ -83,7 +83,7 @@ const sample = (keys: Key[], t: number): {cx: number; s: number} => {
   return ks[ks.length - 1];
 };
 
-type Cut = {framing: Record<string, Key[]>; subY: Record<string, number>; cards: Set<string>};
+type Cut = {framing: Record<string, Key[]>; subY: Record<string, number>; cards: Set<string>; meter?: Record<string, MeterPlace>};
 
 const Reframe: React.FC<{shot: Shot; cut: Cut}> = ({shot, cut}) => {
   const f = useCurrentFrame();
@@ -95,7 +95,7 @@ const Reframe: React.FC<{shot: Shot; cut: Cut}> = ({shot, cut}) => {
   const contentH = 1080 * s;
   // content sits a little above centre so the bottom UI zone stays clear
   const top = (VH - contentH) / 2 - Math.max(0, (VH - contentH) * 0.25);
-  const win = {x0: cx - half, x1: cx + half, s, safeRight: SAFE_RIGHT / s, subY: cut.subY[shot.id]};
+  const win = {x0: cx - half, x1: cx + half, s, safeRight: SAFE_RIGHT / s, subY: cut.subY[shot.id], meter: cut.meter?.[shot.id]};
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <div style={{position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transformOrigin: '0 0', transform: `translate(${VW / 2 - cx * s}px, ${top}px) scale(${s})`, overflow: 'hidden'}}>

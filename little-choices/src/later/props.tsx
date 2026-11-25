@@ -117,10 +117,11 @@ export const HourglassMeter: React.FC<{
   x: number; y: number; days: number; drain?: number; flip?: number; warm?: number; opacity?: number; scale?: number;
 }> = ({x, y, days, drain, flip = 0, warm = 0, opacity = 1, scale = 1}) => {
   const win = useFrameWindow();
+  const card = !!win?.meter?.card;
   if (win) {
     scale = Math.max(0.6, 1 / win.s);
-    x = win.x1 - win.safeRight - 110 * scale;
-    y = 40;
+    x = win.meter?.side === 'left' ? win.x0 + 30 / win.s + 110 * scale : win.x1 - win.safeRight - 110 * scale;
+    y = win.meter?.y ?? 40;
   }
   // sand drains from the top as days pass (full at 0 days, almost empty at ~50)
   const d = drain ?? Math.min(0.94, days / 52);
@@ -132,7 +133,7 @@ export const HourglassMeter: React.FC<{
   const topLevel = (1 - d) * 58; // sand height in the top bulb
   const botLevel = d * 52;
   return (
-    <div style={{position: 'absolute', left: x, top: y, width: 220, transform: `translate(-50%, 0) scale(${scale})`, transformOrigin: 'top center', opacity, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10}}>
+    <div style={{position: 'absolute', left: x, top: y, width: 220, transform: `translate(-50%, 0) scale(${scale})`, transformOrigin: 'top center', opacity, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, ...(card ? {background: 'rgba(14,18,26,0.86)', borderRadius: 30, padding: '14px 0 16px', boxShadow: '0 6px 24px rgba(0,0,0,0.5)'} : {})}}>
       <div style={{fontFamily: HAND, fontSize: 32, color: '#cfd6e2', letterSpacing: 3, whiteSpace: 'nowrap', textShadow: '0 0 8px rgba(0,0,0,0.9)'}}>LAST CALL</div>
       <svg width={W + 60} height={Hh + 40} viewBox={`-30 -20 ${W + 60} ${Hh + 40}`} style={{overflow: 'visible'}}>
         <defs>
@@ -261,7 +262,7 @@ export const ChatScreen: React.FC<{show?: number}> = ({show = 2}) => (
   </g>
 );
 
-export const VoicemailScreen: React.FC<{progress?: number}> = ({progress = 0.5}) => (
+export const VoicemailScreen: React.FC<{progress?: number; playing?: boolean}> = ({progress = 0.5, playing = true}) => (
   <g>
     <rect width={SW} height={SH} fill="#10171f" />
     <text x={30} y={110} fontFamily={HAND} fontSize={46} fill="#fff">Voicemail</text>
@@ -280,8 +281,14 @@ export const VoicemailScreen: React.FC<{progress?: number}> = ({progress = 0.5})
     {/* playing panel */}
     <rect x={20} y={470} width={SW - 40} height={260} rx={24} fill="#1d2a36" />
     <circle cx={70} cy={560} r={30} fill="#3c8dd6" />
-    <rect x={60} y={545} width={7} height={30} rx={2} fill="#fff" />
-    <rect x={74} y={545} width={7} height={30} rx={2} fill="#fff" />
+    {playing ? (
+      <>
+        <rect x={60} y={545} width={7} height={30} rx={2} fill="#fff" />
+        <rect x={74} y={545} width={7} height={30} rx={2} fill="#fff" />
+      </>
+    ) : (
+      <path d="M62,543 L84,560 L62,577 Z" fill="#fff" />
+    )}
     {Array.from({length: 26}).map((_, i) => {
       const h = 12 + Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.6)) * 48;
       const played = i / 26 < progress;

@@ -3,7 +3,7 @@
 The series' Remotion project: silhouette shorts built entirely as SVG React components.
 
 - **SCROLL** (episode 3) — finished: shared code in `src/`, shots in `src/scenes/`, timeline in `src/timeline.ts`.
-- **LATER** (episode 4) — in production: brief in `briefs/LATER_brief.md`, code in `src/later/`, compositions prefixed `later-`.
+- **LATER** (episode 4) — finished: brief in `briefs/LATER_brief.md`, code in `src/later/`, compositions prefixed `later-`, QA in `LATER_QA_REPORT.md`.
 
 Briefs for every film live in `briefs/`.
 
@@ -16,9 +16,11 @@ Briefs for every film live in `briefs/`.
 - `npm run render:vertical` — 1080×1920 re-framed cut for Shorts/Reels (`out/scroll_vertical_video.mp4`)
 - `npm run thumbnails` — YouTube thumbnails (1280×720) + vertical cover into `marketing/`
 - `python3 scripts/make_srt.py` — English SDH captions `marketing/SCROLL.en.srt`
+- `npm run later:render` / `npm run later:render:vertical` / `npm run later:mix` — LATER picture, vertical cut and mix into `out/later/`
+- `npm run later:thumbnails` / `npm run later:srt` — LATER thumbnails + vertical cover and `LATER.en.srt` into `marketing/later/`
 - `npm run mix` — music + SFX, two-pass loudnorm (−14 LUFS / −1.5 dBTP), mux to `out/SCROLL_final.mp4` (and `out/SCROLL_vertical.mp4` if rendered), per-scene loudness report
 
-Retiming: edit `src/timeline.ts` (seconds per shot). Vertical framing per shot: `src/vertical.tsx` (`FRAMING`).
+Retiming: edit `src/timeline.ts` (seconds per shot). Vertical framing per shot: `src/vertical.tsx` (`FRAMING`); for LATER `src/later/vertical.tsx` (`FRAMING`, subtitle heights `SUB_Y`, meter placement `METER`).
 
 ## Layout
 - `src/characters/StickFigure.tsx` — Dad / Mia (`kid`) silhouettes: poses, eyes, brows, glow
@@ -30,4 +32,4 @@ Retiming: edit `src/timeline.ts` (seconds per shot). Vertical framing per shot: 
 Fonts (Gochi Hand, Cormorant Garamond; SIL OFL) are bundled in `public/fonts/` so renders never hit the network.
 
 ## Marketing
-`marketing/` holds the thumbnails, the vertical cover, `SEO.md` (titles, description with chapters, tags, pinned comment, upload settings, translations) and `SCROLL.en.srt`.
+`marketing/` holds the SCROLL thumbnails, the vertical cover, `SEO.md` (titles, description with chapters, tags, pinned comment, upload settings, translations) and `SCROLL.en.srt`; `marketing/later/` holds the same set for LATER; `marketing/channel/` the Little Choices logo, banner and watermark.

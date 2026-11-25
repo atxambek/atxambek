@@ -50,12 +50,29 @@ export const Subtitle: React.FC<{text: string; kind?: SubKind; x: number; y: num
 }) => {
   let x = x0;
   let y = y0;
+  let shown = text;
+  let fs = size;
   const f = useF();
   const win = useFrameWindow();
   if (f < from || f > to) return null;
   if (win) {
-    // vertical cut: keep the line inside the visible window and out of the right-hand safe zone
-    const w = text.length * size * 0.5 + 70;
+    // vertical cut: keep the line inside the visible window and out of the right-hand safe zone.
+    // A line wider than the window is broken at the space nearest its middle, then shrunk if it still does not fit.
+    const isThought = kind === 'thought';
+    const extra = (kind === 'phone' ? size * 0.72 + 14 : 0) + 64;
+    const fit = (t: string, k: number) => Math.max(...t.split('\n').map((l) => (l.length + (isThought ? 4 : 0)) * k)) * (isThought ? size - 6 : size) + extra;
+    const avail = win.x1 - win.safeRight - win.x0 - 60 / win.s;
+    if (fit(shown, 0.38) > avail && !text.includes('\n')) {
+      const words = text.split(' ');
+      let best = text;
+      for (let i = 1; i < words.length; i++) {
+        const t = words.slice(0, i).join(' ') + '\n' + words.slice(i).join(' ');
+        if (fit(t, 0.38) < fit(best, 0.38)) best = t;
+      }
+      shown = best;
+    }
+    if (fit(shown, 0.38) > avail) fs = (size * avail) / fit(shown, 0.38);
+    const w = Math.min(fit(shown, 0.5), avail);
     const lo = win.x0 + 30 / win.s + w / 2;
     const hi = win.x1 - win.safeRight - w / 2;
     x = lo > hi ? (win.x0 + win.x1 - win.safeRight) / 2 : Math.min(hi, Math.max(lo, x));
@@ -73,7 +90,7 @@ export const Subtitle: React.FC<{text: string; kind?: SubKind; x: number; y: num
         transform: `translate(-50%, -100%) translateY(${(1 - op) * 6}px)`,
         opacity: op,
         fontFamily: HAND,
-        fontSize: thought ? size - 6 : size,
+        fontSize: thought ? fs - 6 : fs,
         fontStyle: thought ? 'italic' : 'normal',
         color,
         whiteSpace: 'pre',
@@ -94,9 +111,9 @@ export const Subtitle: React.FC<{text: string; kind?: SubKind; x: number; y: num
             <path d="M3,9 L7,9 L12,4 L12,20 L7,15 L3,15 Z" fill="#ffffff" />
             <path d="M15.5,8.5 C17,10 17,14 15.5,15.5 M18,6 C21,9 21,15 18,18" stroke="#ffffff" strokeWidth={1.8} fill="none" strokeLinecap="round" />
           </svg>
-          {text}
+          {shown}
         </span>
-      ) : thought ? `( ${text} )` : text}
+      ) : thought ? `( ${shown} )` : shown}
     </div>
   );
 };

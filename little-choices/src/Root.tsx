@@ -8,6 +8,7 @@ import {ChannelBanner, ChannelLogo, ChannelPreview, ChannelWatermark} from './ch
 import {LaterS01, LaterS03, LaterS07, LaterS13, LaterS18, LaterStack} from './later/frames';
 import {LaterFilm} from './later/film';
 import {LaterVertical} from './later/vertical';
+import {LaterCoverVertical, LaterThumbCall, LaterThumbStack, LaterThumbVoicemail} from './later/thumbnails';
 import {LATER_TIMELINE, laterTotal} from './later/timeline';
 import {FPS, H, W} from './theme';
 import {shotFrames, TIMELINE} from './timeline';
@@ -88,6 +89,11 @@ export const RemotionRoot: React.FC = () => (
     {LATER_TIMELINE.map((s) => (
       <Composition key={`later-${s.id}`} id={`later-shot-${s.id}`} component={() => <>{s.render(shotFrames(s))}</>} fps={FPS} width={W} height={H} durationInFrames={shotFrames(s)} />
     ))}
+    {/* LATER thumbnails + vertical cover */}
+    <Composition id="later-thumb-a-voicemail" component={LaterThumbVoicemail} fps={FPS} width={1280} height={720} durationInFrames={1} />
+    <Composition id="later-thumb-b-47days" component={LaterThumbStack} fps={FPS} width={1280} height={720} durationInFrames={1} />
+    <Composition id="later-thumb-c-callher" component={LaterThumbCall} fps={FPS} width={1280} height={720} durationInFrames={1} />
+    <Composition id="later-cover-vertical" component={LaterCoverVertical} fps={FPS} width={1080} height={1920} durationInFrames={1} />
     {/* LATER (episode 4) — phase 1 style frames */}
     <Composition id="later-S01" component={LaterS01} fps={FPS} width={W} height={H} durationInFrames={300} />
     <Composition id="later-S03" component={LaterS03} fps={FPS} width={W} height={H} durationInFrames={240} />

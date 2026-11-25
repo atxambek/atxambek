@@ -18,15 +18,15 @@ import {Layer, LightPool, Vignette} from './ui/UI';
 const DISPLAY = 'Anton';
 loadFont({family: DISPLAY, url: staticFile('fonts/Anton.woff2'), weight: '400'});
 
-const ORANGE = '#ffa24d';
+export const ORANGE = '#ffa24d';
 
-const Scaled: React.FC<{w: number; children: React.ReactNode}> = ({w, children}) => (
+export const Scaled: React.FC<{w: number; children: React.ReactNode}> = ({w, children}) => (
   <AbsoluteFill style={{background: '#000', overflow: 'hidden'}}>
     <div style={{position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transformOrigin: '0 0', transform: `scale(${w / 1920})`}}>{children}</div>
   </AbsoluteFill>
 );
 
-const Punch: React.FC<{lines: React.ReactNode[]; x: number; y: number; size: number; align?: 'left' | 'right' | 'center'; rotate?: number; width?: number}> = ({
+export const Punch: React.FC<{lines: React.ReactNode[]; x: number; y: number; size: number; align?: 'left' | 'right' | 'center'; rotate?: number; width?: number}> = ({
   lines, x, y, size, align = 'left', rotate = -2, width,
 }) => (
   <div
@@ -55,9 +55,9 @@ const Punch: React.FC<{lines: React.ReactNode[]; x: number; y: number; size: num
   </div>
 );
 
-const Wordmark: React.FC<{x: number; y: number; size?: number}> = ({x, y, size = 58}) => (
+export const Wordmark: React.FC<{x: number; y: number; size?: number; text?: string}> = ({x, y, size = 58, text = 'SCROLL'}) => (
   <div style={{position: 'absolute', left: x, top: y, fontFamily: SERIF, fontWeight: 600, fontSize: size, letterSpacing: size * 0.32, color: '#f3ead8', textShadow: '0 2px 12px rgba(0,0,0,0.9)'}}>
-    SCROLL
+    {text}
   </div>
 );
 

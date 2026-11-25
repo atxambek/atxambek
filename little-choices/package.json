@@ -16,7 +16,9 @@
     "later:animatic": "remotion render LaterFilm out/later/animatic.mp4 --scale=0.5 --props='{\"fps\":10}' --concurrency=4 --muted",
     "later:render": "remotion render LaterFilm out/later/later_video.mp4 --codec=h264 --crf=18 --concurrency=4 --muted",
     "later:mix": "FILM=later bash scripts/mix.sh",
-    "later:render:vertical": "remotion render LaterVertical out/later/later_vertical_video.mp4 --codec=h264 --crf=18 --concurrency=4 --muted"
+    "later:render:vertical": "remotion render LaterVertical out/later/later_vertical_video.mp4 --codec=h264 --crf=18 --concurrency=4 --muted",
+    "later:thumbnails": "bash scripts/later_thumbnails.sh",
+    "later:srt": "python3 scripts/make_srt_later.py"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.546",
