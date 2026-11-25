@@ -21,12 +21,13 @@ const ShotWrap: React.FC<{shot: Shot}> = ({shot}) => {
   );
 };
 
-export const Film: React.FC = () => {
+/** Plays any film timeline (SCROLL, LATER, …) as a Series of shots with act fades. */
+export const TimelineFilm: React.FC<{timeline: Shot[]}> = ({timeline}) => {
   const {fps} = useVideoConfig();
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <Series>
-        {TIMELINE.map((s) => (
+        {timeline.map((s) => (
           <Series.Sequence key={s.id} durationInFrames={toFrames(shotFrames(s), fps)} name={s.id}>
             <ShotWrap shot={s} />
           </Series.Sequence>
@@ -35,3 +36,5 @@ export const Film: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+export const Film: React.FC = () => <TimelineFilm timeline={TIMELINE} />;

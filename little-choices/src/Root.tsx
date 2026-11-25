@@ -6,6 +6,8 @@ import {VerticalFilm} from './vertical';
 import {CoverVertical, CoverVerticalLookUp, ThumbDrawing, ThumbFiveMinutes, ThumbLookUp} from './thumbnails';
 import {ChannelBanner, ChannelLogo, ChannelPreview, ChannelWatermark} from './channel';
 import {LaterS01, LaterS03, LaterS07, LaterS13, LaterS18, LaterStack} from './later/frames';
+import {LaterFilm} from './later/film';
+import {LATER_TIMELINE, laterTotal} from './later/timeline';
 import {FPS, H, W} from './theme';
 import {shotFrames, TIMELINE} from './timeline';
 import {toFrames} from './time';
@@ -55,6 +57,23 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="channel-banner" component={ChannelBanner} fps={FPS} width={2048} height={1152} durationInFrames={1} />
     <Composition id="channel-watermark" component={ChannelWatermark} fps={FPS} width={150} height={150} durationInFrames={1} />
     <Composition id="channel-preview" component={ChannelPreview} fps={FPS} width={1600} height={900} durationInFrames={1} />
+    {/* LATER (episode 4) — the film. Pass --props='{"fps":10}' for the animatic. */}
+    <Composition
+      id="LaterFilm"
+      component={LaterFilm}
+      fps={FPS}
+      width={W}
+      height={H}
+      durationInFrames={laterTotal(FPS)}
+      defaultProps={{fps: FPS} as FilmProps}
+      calculateMetadata={({props}) => {
+        const fps = Number((props as FilmProps).fps) || FPS;
+        return {fps, durationInFrames: laterTotal(fps)};
+      }}
+    />
+    {LATER_TIMELINE.map((s) => (
+      <Composition key={`later-${s.id}`} id={`later-shot-${s.id}`} component={() => <>{s.render(shotFrames(s))}</>} fps={FPS} width={W} height={H} durationInFrames={shotFrames(s)} />
+    ))}
     {/* LATER (episode 4) — phase 1 style frames */}
     <Composition id="later-S01" component={LaterS01} fps={FPS} width={W} height={H} durationInFrames={300} />
     <Composition id="later-S03" component={LaterS03} fps={FPS} width={W} height={H} durationInFrames={240} />

@@ -43,15 +43,15 @@ export const QuoteCard: React.FC<{quote: string[]; author: string; dur: number}>
   );
 };
 
-export const TitleCard: React.FC<{dur: number}> = ({dur}) => {
+export const TitleCard: React.FC<{dur: number; title?: string; tagline?: string}> = ({dur, title = 'SCROLL', tagline = "Look up. They're growing."}) => {
   const f = useF();
   const portrait = usePortraitCard();
   const out = interpolate(f, [dur - 40, dur - 2], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const track = interpolate(f, [0, dur], [34, 42]) * (portrait ? 0.7 : 1);
   return (
     <AbsoluteFill style={{background: '#000', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', opacity: out}}>
-      <div style={{fontFamily: SERIF, fontWeight: 600, fontSize: portrait ? 118 : 150, letterSpacing: track, color: '#f3ead8', opacity: fade(f, 6, 30), paddingLeft: track}}>SCROLL</div>
-      <div style={{marginTop: 26, fontFamily: SERIF, fontStyle: 'italic', fontSize: 50, color: '#ffb35c', opacity: fade(f, 50, 30)}}>Look up. They're growing.</div>
+      <div style={{fontFamily: SERIF, fontWeight: 600, fontSize: portrait ? 118 : 150, letterSpacing: track, color: '#f3ead8', opacity: fade(f, 6, 30), paddingLeft: track}}>{title}</div>
+      <div style={{marginTop: 26, fontFamily: SERIF, fontStyle: 'italic', fontSize: 50, color: '#ffb35c', opacity: fade(f, 50, 30)}}>{tagline}</div>
     </AbsoluteFill>
   );
 };

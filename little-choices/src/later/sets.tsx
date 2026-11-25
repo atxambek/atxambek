@@ -6,7 +6,7 @@ import {Month, ScarfPath, Snowfall, StickyNote, WallCalendar, YarnBall} from './
 
 /* ------------------------------------------------------------------ helpers */
 
-const Skyline: React.FC<{w: number; h: number; night: boolean; seed?: number}> = ({w, h, night, seed = 1}) => {
+export const Skyline: React.FC<{w: number; h: number; night: boolean; seed?: number}> = ({w, h, night, seed = 1}) => {
   const blds = Array.from({length: 9}).map((_, i) => {
     const bw = 40 + ((i * 37 + seed * 11) % 50);
     const bh = h * (0.3 + (((i * 53 + seed * 7) % 45) / 100));

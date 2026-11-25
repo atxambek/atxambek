@@ -189,15 +189,26 @@ export const KnittingInHands: React.FC<{len?: number}> = ({len = 6}) => (
   </g>
 );
 
-/** A long knitted scarf as a thick striped stroke along an SVG path (world px). */
-export const ScarfPath: React.FC<{d: string; width?: number}> = ({d, width = 16}) => (
-  <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-    <path d={d} stroke="#000" strokeWidth={width + 4} opacity={0.25} transform="translate(3 5)" />
-    <path d={d} stroke={SCARF_RED} strokeWidth={width} />
-    <path d={d} stroke="#a83a28" strokeWidth={width} strokeDasharray={`${width * 0.35} ${width * 2.2}`} />
-    <path d={d} stroke="#f08a6c" strokeWidth={width * 0.18} opacity={0.6} transform={`translate(0 ${-width * 0.22})`} />
-  </g>
-);
+/** A long knitted scarf as a thick striped stroke along an SVG path (world px). reveal 0..1 draws it on along the path. */
+export const ScarfPath: React.FC<{d: string; width?: number; reveal?: number; id?: string}> = ({d, width = 16, reveal = 1, id}) => {
+  if (reveal <= 0) return null;
+  const masked = reveal < 1 && id;
+  return (
+    <g fill="none" strokeLinecap="round" strokeLinejoin="round" mask={masked ? `url(#sp${id})` : undefined}>
+      {masked && (
+        <defs>
+          <mask id={`sp${id}`} maskUnits="userSpaceOnUse" x={-500} y={-500} width={3000} height={2200}>
+            <path d={d} stroke="#fff" strokeWidth={width * 3} pathLength={1} strokeDasharray="1 1" strokeDashoffset={1 - reveal} fill="none" />
+          </mask>
+        </defs>
+      )}
+      <path d={d} stroke="#000" strokeWidth={width + 4} opacity={0.25} transform="translate(3 5)" />
+      <path d={d} stroke={SCARF_RED} strokeWidth={width} />
+      <path d={d} stroke="#a83a28" strokeWidth={width} strokeDasharray={`${width * 0.35} ${width * 2.2}`} />
+      <path d={d} stroke="#f08a6c" strokeWidth={width * 0.18} opacity={0.6} transform={`translate(0 ${-width * 0.22})`} />
+    </g>
+  );
+};
 
 export const YarnBall: React.FC<{x: number; y: number; r?: number}> = ({x, y, r = 34}) => (
   <g transform={`translate(${x} ${y})`}>

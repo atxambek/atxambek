@@ -17,7 +17,7 @@ A son keeps answering his mother with "Call you later" and moving a yellow **CAL
 Everything in SCROLL §2 applies: flat black silhouettes, dot eyes + brow strokes, the O mouth only for surprise, emotion glow (cyan = screen / coldness, amber = warmth), vignette, depth of field, over-the-shoulder blurred foregrounds, slow push-ins, fade to black between acts, white flashes at most one per second, subtitle colours (white spoken, orange excuse/temptation, light-grey italic thought), serif narration and quote cards, letter-spaced serif title card.
 
 ### Characters
-- **SAM** (~30): adult build (same as Dad in SCROLL). Identifiers: a small **hair tuft** on top of the head and a **red knitted scarf** (#d9553b, darker stripe, two short fringed tails). The scarf is old, Mom made it years ago, and he wears it in every outdoor or cold shot. It is his identifying colour, like Mia's yellow clip.
+- **SAM** (~30): adult build (same as Dad in SCROLL). Identifiers: a small **hair tuft** on top of the head (every shot) and a **red knitted scarf** (#d9553b, darker stripe, two short fringed tails). The scarf is old, Mom made it years ago; he wears it in every outdoor or leaving shot and takes it off indoors (office, sofa, bed). It is his identifying colour, like Mia's yellow clip.
 - **MOM** (~67): about 92 % of Sam's height, slightly rounder torso. Identifiers: a **hair bun** on the back of the head and **round reading glasses** (thin white rings around the dot eyes). Always near red yarn: she is knitting him a new scarf, and **its length grows with every day he doesn't call**.
 - A character's design never changes between shots.
 
@@ -28,7 +28,7 @@ Everything in SCROLL §2 applies: flat black silhouettes, dot eyes + brow stroke
 - Season: late autumn → deep winter (snow from mid-December). Seasons must progress correctly.
 
 ### The meter (series signature) — **LAST CALL hourglass**
-1 MINUTE had a calendar, TEMPER a thermometer, SCROLL a screen-time pill. LATER has a **small hourglass card in the right third**: label **LAST CALL**, hourglass icon, readout **"3 days" → "4 days" → "10 days" → "23 days" → "47 days"**. Sand drains from the top half as days pass and the card glows colder. When he finally calls, the hourglass **flips** (sand back on top), the readout says **"today"** and it glows amber; in Act 5 it fades out.
+1 MINUTE had a calendar, TEMPER a thermometer, SCROLL a screen-time pill. LATER has a **small hourglass card in the right third**: label **LAST CALL**, hourglass icon, readout **"3 days" → "4 days" → "10 days" → "23 days" → "47 days" → "51 days"** (Sun, Dec 20). Sand drains from the top half as days pass and the card glows colder. When he finally calls, the hourglass **flips** (sand back on top), the readout says **"today"** and it glows amber; in Act 5 it fades out.
 
 ### New subtitle kind — **phone voice**
 Lines heard through a phone (voicemail, the call) are white on the dark pill with a **small speaker-wave icon** at the start of the pill, so they read as "from the phone" and not in the room. Text messages appear as **chat bubbles on the phone screen** (part of the image, not subtitles).
@@ -49,7 +49,8 @@ Day counts follow one fact: **the last call was Friday, Oct 30, 2026.**
 - **C0:** Black. Narration: *"Later" always sounds like a promise.*
 
 ### ACT 1: The promise
-- **S1 (wide):** Mon, Nov 2, morning. Sam's small city flat, cold. Sam rushes (bag, keys, scarf). His phone buzzes on the counter: **incoming call — MOM**. He glances, declines, types. Chat bubble on the phone: **"Busy. Call you later."** (the excuse line, also shown as an orange subtitle). LAST CALL appears: **3 days**.
+- **S1a (wide):** Mon, Nov 2, morning. Sam's small city flat, cold. Sam walks in wearing his scarf; his phone buzzes on the counter. He picks it up and frowns. LAST CALL appears: **3 days**.
+- **S1b (insert):** the phone: **incoming call — Mom**. His thumb hits decline and types. Chat bubble on the phone: **"Busy. Call you later."** (also shown as an orange subtitle).
 - **S2 (insert):** His hand writes **CALL MOM** on a yellow sticky note, stroke by stroke, and slaps it on the fridge.
 - **S3 (medium):** Mom's room, dim warm. Mom in her armchair by the window, knitting; the red scarf is a few rows long. Her phone lights up with his message. She reads it through her glasses, smiles a little and types back: **"Okay ♥"**. Back to knitting.
 - **S4 (wide):** Night. Sam comes home exhausted, opens the fridge, sees the note. Wall clock **23:40**.
@@ -85,6 +86,7 @@ Day counts follow one fact: **the last call was Friday, Oct 30, 2026.**
 ### ACT 4: One small step
 - **S11 (night, medium):** Sam sets a weekly reminder: **SUNDAY 7 PM — CALL MOM · Repeat: every week**. Then he books a train ticket: **City → Home · Sat, Jan 9**.
 - **S12 (Sun, Dec 20, 19:00):** Dinner with friends, a warm restaurant. The reminder pops.
+  - LAST CALL reads **51 days**.
   - Temptation (orange): *"Call her tomorrow."* … *"She'll understand."*
   - He stands up, winds his scarf and steps out into the snow.
 - **S13 (split screen — the call):** left half the cold snowy street, right half Mom's dim room. Her phone rings; she nearly drops a needle and answers.
@@ -93,10 +95,10 @@ Day counts follow one fact: **the last call was Friday, Oct 30, 2026.**
   - Mom's eyes become happy arcs. Mom: **"Sam!"**
   - Sam: **"How are you?"** Mom: **"Better now."**
   - The divider fades; the warm light flows across into his half and the snowflakes on his side turn amber. LAST CALL **flips → "today"**, amber.
-- **S14 (time-passing montage, dissolves):** Sundays **Dec 27 → Jan 3**:
-  - the call timer grows **"Mom ♥ 04:12" → "18:40" → "52:03"**;
-  - Mom sticks her own note on her fridge: **"Sunday 7 PM — Sam ♥"**;
-  - the scarf keeps growing, but now she knits smiling.
+- **S14 (time-passing montage, ghosting dissolves):** Sundays **Dec 20 → Dec 27 → Jan 3**:
+  - Dec 20: his call timer **"Mom ♥ 04:12"**;
+  - Dec 27: Mom sticks her own note on the wall by the family photos: **"SUN 7PM — SAM ♥"**;
+  - Jan 3: the call timer reads **"52:03"**.
 - **QUOTE CARD 2 (8 s):** *"The days are long, but the years are short."* — GRETCHEN RUBIN
 
 ### ACT 5: The payoff and bookend
@@ -104,7 +106,7 @@ Day counts follow one fact: **the last call was Friday, Oct 30, 2026.**
 - **S16 (exterior):** Mom's small house in the snow, one warm window. He walks up the path and knocks.
 - **S17 (doorway):** Mom opens: wide eyes + O mouth, then happy arcs.
   - Sam: **"Hi, Mom."** Mom: **"You came!"** They hug.
-- **S18 (inside, warm):** Mom brings out the scarf she knitted while she waited. It is absurdly long. She winds it around his neck, then around her own; both laugh (happy arcs). Hold 2.5 s.
+- **S18 (inside, warm):** Mom brings out the scarf she knitted while she waited. It is absurdly long. She winds it around his neck, then around her own, and the rest coils across the floor; both laugh (happy arcs). Hold 2.5 s.
 - **S19 (final wide):** Pull back from her window through the snowy garden; a lit train passes in the distance; her window glows amber. Hold 4 s.
 - **C-END (black):** Narration: *No calendar has a day called "Later."*
 - **TITLE CARD:** **L A T E R**, tagline: *Call her today.* Hold 5 s, fade out with the music.
@@ -138,7 +140,7 @@ Same as SCROLL §7, plus:
 - the LAST CALL counter matches the calendar dates (3 → 4 → 10 → 23 → 47);
 - the scarf length only ever grows;
 - calendar weekdays are correct (Nov 2 2026 = Mon … Jan 9 2027 = Sat);
-- Sam's scarf and tuft and Mom's bun and glasses appear in every shot.
+- Sam's tuft in every shot (his scarf in every outdoor/leaving shot); Mom's bun and glasses in every shot.
 
 ## 8. Phases (stop and show after 1 and 2)
 1. **Style frames:**

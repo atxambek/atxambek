@@ -9,3 +9,6 @@ out/chk*
 out/vqa
 out/vqa_final
 out/thumbqa
+out/later/grid
+out/later/chk*
+out/later/*.mp4
