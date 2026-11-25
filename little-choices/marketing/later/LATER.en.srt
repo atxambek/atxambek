@@ -61,7 +61,7 @@ SAM (thinking): <i>Maybe twenty more visits.</i>
 
 16
 00:02:39,000 --> 00:02:42,933
-[reminder set] SUNDAY 7 PM — CALL MOM
+[new reminder] SUNDAY 7 PM · Call Mom ♥
 Repeat: every week
 
 17
@@ -70,7 +70,7 @@ Repeat: every week
 
 18
 00:02:48,333 --> 00:02:49,600
-[phone buzzing] SUNDAY 7 PM — CALL MOM
+[phone buzzing] 7 PM · Call Mom ♥
 
 19
 00:02:49,667 --> 00:02:52,333
