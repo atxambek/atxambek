@@ -1,10 +1,16 @@
-# SCROLL — animated short (Remotion)
+# Little Choices — animated shorts studio (Remotion)
 
-Silhouette short, built entirely as SVG React components and rendered with Remotion.
+The series' Remotion project: silhouette shorts built entirely as SVG React components.
+
+- **SCROLL** (episode 3) — finished: shared code in `src/`, shots in `src/scenes/`, timeline in `src/timeline.ts`.
+- **LATER** (episode 4) — in production: brief in `briefs/LATER_brief.md`, code in `src/later/`, compositions prefixed `later-`.
+
+Briefs for every film live in `briefs/`.
 
 ## Commands
 - `npm run studio` — open Remotion Studio to scrub shots
 - `npm run stills` — render the phase-1 style frames to `out/style-frames/`
+- `npm run later:stills` — LATER style frames + contact sheet to `out/later/`
 - `npm run animatic` / `npm run animatic:vertical` — 10 fps, half-size previews
 - `npm run render` — 1920×1080 picture (`out/scroll_video.mp4`)
 - `npm run render:vertical` — 1080×1920 re-framed cut for Shorts/Reels (`out/scroll_vertical_video.mp4`)

@@ -39,7 +39,7 @@ export const Vignette: React.FC<{strength?: number}> = ({strength = 0.35}) => (
   />
 );
 
-export type SubKind = 'spoken' | 'excuse' | 'thought';
+export type SubKind = 'spoken' | 'excuse' | 'thought' | 'phone'; // phone = heard through a phone (speaker icon)
 
 /**
  * Dialogue subtitle. (x, y) = bottom-centre anchor in frame px (usually just above the speaker's head).
@@ -88,7 +88,15 @@ export const Subtitle: React.FC<{text: string; kind?: SubKind; x: number; y: num
         letterSpacing: 0.5,
       }}
     >
-      {thought ? `( ${text} )` : text}
+      {kind === 'phone' ? (
+        <span style={{display: 'inline-flex', alignItems: 'center', gap: 14}}>
+          <svg width={size * 0.72} height={size * 0.72} viewBox="0 0 24 24" style={{flex: 'none'}}>
+            <path d="M3,9 L7,9 L12,4 L12,20 L7,15 L3,15 Z" fill="#ffffff" />
+            <path d="M15.5,8.5 C17,10 17,14 15.5,15.5 M18,6 C21,9 21,15 18,18" stroke="#ffffff" strokeWidth={1.8} fill="none" strokeLinecap="round" />
+          </svg>
+          {text}
+        </span>
+      ) : thought ? `( ${text} )` : text}
     </div>
   );
 };

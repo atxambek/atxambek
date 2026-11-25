@@ -11,7 +11,8 @@
     "render:vertical": "remotion render FilmVertical out/scroll_vertical_video.mp4 --codec=h264 --crf=18 --concurrency=4 --muted",
     "animatic:vertical": "remotion render FilmVertical out/animatic_vertical.mp4 --scale=0.5 --props='{\"fps\":10}' --concurrency=4 --muted",
     "thumbnails": "bash scripts/thumbnails.sh",
-    "channel-art": "bash scripts/channel_art.sh"
+    "channel-art": "bash scripts/channel_art.sh",
+    "later:stills": "bash scripts/later_stills.sh"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.546",

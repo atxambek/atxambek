@@ -5,6 +5,7 @@ import {Film} from './Film';
 import {VerticalFilm} from './vertical';
 import {CoverVertical, CoverVerticalLookUp, ThumbDrawing, ThumbFiveMinutes, ThumbLookUp} from './thumbnails';
 import {ChannelBanner, ChannelLogo, ChannelPreview, ChannelWatermark} from './channel';
+import {LaterS01, LaterS03, LaterS07, LaterS13, LaterS18, LaterStack} from './later/frames';
 import {FPS, H, W} from './theme';
 import {shotFrames, TIMELINE} from './timeline';
 import {toFrames} from './time';
@@ -54,6 +55,13 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="channel-banner" component={ChannelBanner} fps={FPS} width={2048} height={1152} durationInFrames={1} />
     <Composition id="channel-watermark" component={ChannelWatermark} fps={FPS} width={150} height={150} durationInFrames={1} />
     <Composition id="channel-preview" component={ChannelPreview} fps={FPS} width={1600} height={900} durationInFrames={1} />
+    {/* LATER (episode 4) — phase 1 style frames */}
+    <Composition id="later-S01" component={LaterS01} fps={FPS} width={W} height={H} durationInFrames={300} />
+    <Composition id="later-S03" component={LaterS03} fps={FPS} width={W} height={H} durationInFrames={240} />
+    <Composition id="later-stack" component={LaterStack} fps={FPS} width={W} height={H} durationInFrames={240} />
+    <Composition id="later-S07" component={LaterS07} fps={FPS} width={W} height={H} durationInFrames={300} />
+    <Composition id="later-S13" component={LaterS13} fps={FPS} width={W} height={H} durationInFrames={300} />
+    <Composition id="later-S18" component={LaterS18} fps={FPS} width={W} height={H} durationInFrames={360} />
     {/* Each shot on its own, for scrubbing and style frames */}
     {TIMELINE.map((s) => (
       <Composition key={s.id} id={`shot-${s.id}`} component={() => <>{s.render(shotFrames(s))}</>} fps={FPS} width={W} height={H} durationInFrames={shotFrames(s)} />

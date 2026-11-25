@@ -31,6 +31,13 @@ export const POSES: Record<string, Pose> = {
   lie: {armF: [28, 40], armB: [6, 4], legF: [4, -6], legB: [0, -4], headTilt: 90},
   holdMug: {armF: [12, 100], armB: [-4, -2], legF: [3, 0], legB: [-3, 0], headTilt: -4},
   cuddle: {armF: [40, 60], armB: [20, 40], legF: [90, 0], legB: [88, 0], lean: -26, headTilt: 6},
+  // LATER
+  // phone at the ear: the BACK arm comes up behind the head, so the face stays clear
+  phoneEar: {armF: [8, 6], armB: [-110, -100], legF: [3, 0], legB: [-3, 0], headTilt: 4},
+  holdPhone: {armF: [30, 100], armB: [8, 10], legF: [3, 0], legB: [-3, 0], headTilt: 16},
+  sitKnit: {armF: [40, 70], armB: [30, 75], legF: [88, -86], legB: [80, -80], lean: -8, headTilt: 14},
+  sitPhoneEar: {armF: [40, 70], armB: [-110, -100], legF: [88, -86], legB: [80, -80], lean: -10, headTilt: 2},
+  hugSide: {armF: [70, 40], armB: [60, 30], legF: [3, 0], legB: [-3, 0], headTilt: -6},
 };
 
 type Dims = {
@@ -40,6 +47,8 @@ type Dims = {
 const DAD: Dims = {headR: 14, torsoH: 44, torsoW: 25, shoulderY: -38, armU: 17, armL: 16, legU: 22, legL: 22, limbW: 7, eyeR: 1.9, k: 1};
 // Kid: bigger head ratio, ~55% of Dad's total height after k scaling.
 const KID: Dims = {headR: 17, torsoH: 28, torsoW: 23, shoulderY: -24, armU: 13, armL: 12, legU: 13, legL: 13, limbW: 6, eyeR: 2.5, k: 0.733};
+// Elder (Mom in LATER): ~91% of the adult height, rounder torso.
+const ELDER: Dims = {headR: 14, torsoH: 40, torsoW: 29, shoulderY: -34, armU: 16, armL: 15, legU: 19, legL: 19, limbW: 7, eyeR: 1.9, k: 1};
 
 const rad = (d: number) => (d * Math.PI) / 180;
 const dir = (a: number, len: number) => [Math.sin(rad(a)) * len, Math.cos(rad(a)) * len];
@@ -74,6 +83,10 @@ export type StickFigureProps = {
   glow?: Glow;
   glowStrength?: number; // 0..1
   kid?: boolean;
+  build?: 'adult' | 'kid' | 'elder';
+  hair?: 'none' | 'tuft' | 'bun';
+  glasses?: boolean;
+  scarf?: string; // scarf colour; omitted = no scarf
   itemF?: React.ReactNode; // drawn at the front hand (local coords, rotate follows forearm if itemRotate)
   itemB?: React.ReactNode;
   itemBehind?: boolean;
@@ -82,10 +95,12 @@ export type StickFigureProps = {
 
 export const StickFigure: React.FC<StickFigureProps> = ({
   x, y, scale = 1, facing = 1, rotate = 0, pose = POSES.stand, eyes = 'open', brows = 0, browLift = 0,
-  look, mouth = 'none', glow = 'rim', glowStrength = 1, kid = false, itemF, itemB, itemBehind = false, opacity = 1,
+  look, mouth = 'none', glow = 'rim', glowStrength = 1, kid = false, build, hair = 'none', glasses = false, scarf, itemF, itemB, itemBehind = false, opacity = 1,
 }) => {
   const id = useId().replace(/:/g, '');
-  const d = kid ? KID : DAD;
+  const b = build ?? (kid ? 'kid' : 'adult');
+  kid = b === 'kid';
+  const d = b === 'kid' ? KID : b === 'elder' ? ELDER : DAD;
   const g = GLOW[glow];
   const lean = pose.lean ?? 0;
   const headCY = -d.torsoH - d.headR * 0.82 + (pose.headDy ?? 0);
@@ -115,7 +130,7 @@ export const StickFigure: React.FC<StickFigureProps> = ({
         return <circle cx={ex} cy={ey} r={r} fill="#fff" />;
     }
   };
-  const browY = ly - r * 3.3 - browLift - (eyes === 'wide' ? r * 0.8 : 0);
+  const browY = ly - r * 3.3 - browLift - (eyes === 'wide' ? r * 0.8 : 0) - (glasses ? r * 0.9 : 0);
   const browLen = r * 2.6;
   const brow = (bx: number, sign: number) => (
     <line
@@ -158,7 +173,11 @@ export const StickFigure: React.FC<StickFigureProps> = ({
                 <ellipse cx={d.headR * 1.0} cy={-d.headR * 0.55} rx={d.headR * 0.38} ry={d.headR * 0.28} transform={`rotate(30 ${d.headR} ${-d.headR * 0.55})`} />
               </g>
             )}
+            {hair === 'bun' && <circle cx={-d.headR * 0.62} cy={-d.headR * 0.72} r={d.headR * 0.44} fill={INK} />}
             <circle r={d.headR} fill={INK} />
+            {hair === 'tuft' && (
+              <path d={`M${-d.headR * 0.28},${-d.headR * 0.9} Q${-d.headR * 0.05},${-d.headR * 1.62} ${d.headR * 0.5},${-d.headR * 1.42} Q${d.headR * 0.18},${-d.headR * 1.22} ${d.headR * 0.3},${-d.headR * 0.86} Z`} fill={INK} />
+            )}
             {kid && (
               <g transform={`translate(${d.headR * 0.45} ${-d.headR * 0.86}) rotate(20)`}>
                 <rect x={-4.2} y={-1.9} width={8.4} height={3.8} rx={1.9} fill={MIA_CLIP} />
@@ -171,7 +190,30 @@ export const StickFigure: React.FC<StickFigureProps> = ({
             {eyes !== 'closed' && eyes !== 'none' && brow(lx - gap, 1)}
             {eyes !== 'closed' && eyes !== 'none' && brow(lx + gap, -1)}
             {mouth === 'o' && <ellipse cx={lx} cy={ly + r * 3.4} rx={r * 0.8} ry={r * 1.1} fill="#fff" />}
+            {glasses && eyes !== 'none' && (
+              <g stroke="#fff" strokeWidth={r * 0.42} fill="none" opacity={0.92}>
+                <circle cx={lx - gap} cy={ly} r={r * 2.0} />
+                <circle cx={lx + gap} cy={ly} r={r * 2.0} />
+                <line x1={lx - gap + r * 2.0} y1={ly} x2={lx + gap - r * 2.0} y2={ly} />
+                <line x1={lx - gap - r * 2.0} y1={ly - r * 0.3} x2={lx - gap - r * 3.6} y2={ly - r * 0.9} />
+              </g>
+            )}
           </g>
+          {scarf && (
+            <g>
+              {/* wrap around the neck, then one tail hanging at the front */}
+              <rect x={-d.torsoW / 2 - 1.5} y={-d.torsoH - 2.5} width={d.torsoW + 3} height={7.5} rx={3.6} fill={scarf} />
+              <rect x={-d.torsoW / 2 - 1.5} y={-d.torsoH + 1.2} width={d.torsoW + 3} height={1.4} fill="#000" opacity={0.18} />
+              <g transform={`translate(${d.torsoW * 0.18} ${-d.torsoH + 3}) rotate(-8)`}>
+                <rect x={-2.6} y={0} width={5.2} height={d.torsoH * 0.42} rx={1.6} fill={scarf} />
+                <rect x={-2.6} y={d.torsoH * 0.18} width={5.2} height={1.3} fill="#000" opacity={0.22} />
+                <rect x={-2.6} y={d.torsoH * 0.27} width={5.2} height={1.3} fill="#000" opacity={0.22} />
+                {[-1.8, -0.6, 0.6, 1.8].map((fx) => (
+                  <line key={fx} x1={fx} y1={d.torsoH * 0.42} x2={fx} y2={d.torsoH * 0.42 + 2.6} stroke={scarf} strokeWidth={0.8} strokeLinecap="round" />
+                ))}
+              </g>
+            </g>
+          )}
           <path d={armF.path} {...limbStyle} />
           {at(armF.end, itemF)}
         </g>
