@@ -12,3 +12,7 @@ out/thumbqa
 out/later/grid
 out/later/chk*
 out/later/*.mp4
+public/audio/later_*.wav
+out/later/*.wav
+out/later/*.txt
+out/later/*.log

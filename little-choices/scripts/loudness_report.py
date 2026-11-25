@@ -8,7 +8,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = sys.argv[1]
-src = open(os.path.join(ROOT, 'src', 'timeline.ts')).read()
+src = open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, 'src', 'timeline.ts')).read()
 shots = [(m.group(1), float(m.group(2))) for m in re.finditer(r"\{id: '([^']+)', act: '[^']+', s: ([\d.]+)", src)]
 
 p = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', path, '-af', 'ebur128=peak=true', '-f', 'null', '-'], capture_output=True, text=True)

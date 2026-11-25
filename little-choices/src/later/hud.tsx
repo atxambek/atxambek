@@ -1,6 +1,7 @@
 import React from 'react';
 import {HAND} from '../fonts';
 import {Month, NOTE_YELLOW} from './props';
+import {useFrameWindow} from '../ui/frameCtx';
 
 /** Centre of a day's square on a WallCalendar drawn at (0,0) with width w (same maths as WallCalendar). */
 export const calCell = (month: Month, w: number, day: number) => {
@@ -14,8 +15,12 @@ export const calCell = (month: Month, w: number, day: number) => {
 };
 
 /** Date chip in the top-left corner (frame px). */
-export const DateChip: React.FC<{text: string; opacity?: number; right?: boolean}> = ({text, opacity = 1, right = false}) => (
-  <div style={{position: 'absolute', left: right ? undefined : 70, right: right ? 70 : undefined, top: 64, opacity, display: 'flex', alignItems: 'center', gap: 16, padding: '10px 26px 12px', borderRadius: 999, background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(20px)'}}>
+export const DateChip: React.FC<{text: string; opacity?: number; right?: boolean}> = ({text, opacity = 1, right = false}) => {
+  const win = useFrameWindow();
+  // vertical cut: always top-left of the visible window
+  const left = win ? win.x0 + 24 / win.s : right ? undefined : 70;
+  return (
+  <div style={{position: 'absolute', left, right: !win && right ? 70 : undefined, top: win ? 40 : 64, opacity, display: 'flex', alignItems: 'center', gap: 16, padding: '10px 26px 12px', borderRadius: 999, background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(20px)'}}>
     <svg width={34} height={34} viewBox="0 0 34 34">
       <rect x={3} y={6} width={28} height={25} rx={4} fill="none" stroke="#cfd6e2" strokeWidth={3} />
       <rect x={3} y={6} width={28} height={8} fill="#c9433a" />
@@ -24,7 +29,8 @@ export const DateChip: React.FC<{text: string; opacity?: number; right?: boolean
     </svg>
     <span style={{fontFamily: HAND, fontSize: 42, color: '#ffffff', letterSpacing: 2, whiteSpace: 'nowrap'}}>{text}</span>
   </div>
-);
+  );
+};
 
 /** Chat bubble drawn in world px (used for texts on a phone that is too small to read). */
 export const ChatBubble: React.FC<{x: number; y: number; text: string; mine?: boolean; opacity?: number; size?: number}> = ({x, y, text, mine = false, opacity = 1, size = 40}) => {

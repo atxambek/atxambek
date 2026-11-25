@@ -7,6 +7,7 @@ import {CoverVertical, CoverVerticalLookUp, ThumbDrawing, ThumbFiveMinutes, Thum
 import {ChannelBanner, ChannelLogo, ChannelPreview, ChannelWatermark} from './channel';
 import {LaterS01, LaterS03, LaterS07, LaterS13, LaterS18, LaterStack} from './later/frames';
 import {LaterFilm} from './later/film';
+import {LaterVertical} from './later/vertical';
 import {LATER_TIMELINE, laterTotal} from './later/timeline';
 import {FPS, H, W} from './theme';
 import {shotFrames, TIMELINE} from './timeline';
@@ -64,6 +65,19 @@ export const RemotionRoot: React.FC = () => (
       fps={FPS}
       width={W}
       height={H}
+      durationInFrames={laterTotal(FPS)}
+      defaultProps={{fps: FPS} as FilmProps}
+      calculateMetadata={({props}) => {
+        const fps = Number((props as FilmProps).fps) || FPS;
+        return {fps, durationInFrames: laterTotal(fps)};
+      }}
+    />
+    <Composition
+      id="LaterVertical"
+      component={LaterVertical}
+      fps={FPS}
+      width={1080}
+      height={1920}
       durationInFrames={laterTotal(FPS)}
       defaultProps={{fps: FPS} as FilmProps}
       calculateMetadata={({props}) => {

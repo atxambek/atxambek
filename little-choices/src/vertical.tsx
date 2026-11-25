@@ -83,17 +83,19 @@ const sample = (keys: Key[], t: number): {cx: number; s: number} => {
   return ks[ks.length - 1];
 };
 
-const Reframe: React.FC<{shot: Shot}> = ({shot}) => {
+type Cut = {framing: Record<string, Key[]>; subY: Record<string, number>; cards: Set<string>};
+
+const Reframe: React.FC<{shot: Shot; cut: Cut}> = ({shot, cut}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = f / fps;
-  const {cx: rawCx, s} = sample(FRAMING[shot.id] ?? [[0, 960]], t);
+  const {cx: rawCx, s} = sample(cut.framing[shot.id] ?? [[0, 960]], t);
   const half = VW / 2 / s;
   const cx = Math.min(1920 - half, Math.max(half, rawCx)); // never show past the frame edge
   const contentH = 1080 * s;
   // content sits a little above centre so the bottom UI zone stays clear
   const top = (VH - contentH) / 2 - Math.max(0, (VH - contentH) * 0.25);
-  const win = {x0: cx - half, x1: cx + half, s, safeRight: SAFE_RIGHT / s, subY: SUB_Y[shot.id]};
+  const win = {x0: cx - half, x1: cx + half, s, safeRight: SAFE_RIGHT / s, subY: cut.subY[shot.id]};
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <div style={{position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transformOrigin: '0 0', transform: `translate(${VW / 2 - cx * s}px, ${top}px) scale(${s})`, overflow: 'hidden'}}>
@@ -121,7 +123,7 @@ const VerticalCard: React.FC<{shot: Shot}> = ({shot}) => (
   </AbsoluteFill>
 );
 
-const VShot: React.FC<{shot: Shot}> = ({shot}) => {
+const VShot: React.FC<{shot: Shot; cut: Cut}> = ({shot, cut}) => {
   const f = useCurrentFrame();
   const {fps} = useVideoConfig();
   const dur = toFrames(shotFrames(shot), fps);
@@ -132,24 +134,30 @@ const VShot: React.FC<{shot: Shot}> = ({shot}) => {
   );
   return (
     <AbsoluteFill style={{background: '#000'}}>
-      <AbsoluteFill style={{opacity: op}}>{CARDS.has(shot.id) ? <VerticalCard shot={shot} /> : <Reframe shot={shot} />}</AbsoluteFill>
+      <AbsoluteFill style={{opacity: op}}>{cut.cards.has(shot.id) ? <VerticalCard shot={shot} /> : <Reframe shot={shot} cut={cut} />}</AbsoluteFill>
     </AbsoluteFill>
   );
 };
 
-export const VerticalFilm: React.FC = () => {
+/** Vertical cut of any film timeline with its own framing table. */
+export const VerticalTimelineFilm: React.FC<{timeline: Shot[]; cut: Cut}> = ({timeline, cut}) => {
   const {fps} = useVideoConfig();
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <Series>
-        {TIMELINE.map((s) => (
+        {timeline.map((s) => (
           <Series.Sequence key={s.id} durationInFrames={toFrames(shotFrames(s), fps)} name={s.id}>
-            <VShot shot={s} />
+            <VShot shot={s} cut={cut} />
           </Series.Sequence>
         ))}
       </Series>
     </AbsoluteFill>
   );
 };
+
+export const VerticalFilm: React.FC = () => <VerticalTimelineFilm timeline={TIMELINE} cut={{framing: FRAMING, subY: SUB_Y, cards: CARDS}} />;
+
+export type {Key as FrameKey, Cut as VerticalCut};
+export {FULL as V_FULL};
 
 export const VERTICAL = {width: VW, height: VH, baseFps: BASE_FPS};
